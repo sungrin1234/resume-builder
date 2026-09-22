@@ -16,10 +16,11 @@ logger = logging.getLogger(__name__)
 
 # 3. Flask 앱 생성 (로컬 및 Vercel 서버리스 환경 경로 호환성 확보)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+static_dir = os.path.join(BASE_DIR, "public", "static") if os.path.exists(os.path.join(BASE_DIR, "public", "static")) else os.path.join(BASE_DIR, "static")
 app = Flask(
     __name__,
     template_folder=os.path.join(BASE_DIR, "templates"),
-    static_folder=os.path.join(BASE_DIR, "static")
+    static_folder=static_dir
 )
 
 # 3-1. PWA 지원 라우트 (manifest.json 및 Service Worker)
