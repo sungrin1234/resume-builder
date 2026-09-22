@@ -24,6 +24,7 @@ app = Flask(
 
 # 3-1. PWA 지원 라우트 (manifest.json 및 Service Worker)
 @app.route("/sw.js")
+@app.route("/api/sw.js")
 def service_worker():
     response = app.send_static_file("sw.js")
     response.headers["Content-Type"] = "application/javascript"
@@ -31,6 +32,7 @@ def service_worker():
     return response
 
 @app.route("/manifest.json")
+@app.route("/api/manifest.json")
 def manifest():
     return app.send_static_file("manifest.json")
 
@@ -79,13 +81,17 @@ def build_prompts(name, role, experience, projects, tone, prompt_type):
 """
     return system_instruction, prompt_content
 
-# 5. 메인 화면 라우트
+# 5. 메인 화면 라우트 (루트 및 Vercel 라우트 별칭 지원)
 @app.route("/")
+@app.route("/api")
+@app.route("/api/index")
+@app.route("/api/index.py")
 def index():
     return render_template("index.html")
 
 # 6. AI 생성 API 라우트
 @app.route("/generate", methods=["POST"])
+@app.route("/api/generate", methods=["POST"])
 def generate():
     # 6-1. 요청 데이터 파싱
     data = request.get_json()
