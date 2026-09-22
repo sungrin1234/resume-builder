@@ -14,8 +14,25 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# 3. Flask 앱 생성
-app = Flask(__name__)
+# 3. Flask 앱 생성 (로컬 및 Vercel 서버리스 환경 경로 호환성 확보)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+app = Flask(
+    __name__,
+    template_folder=os.path.join(BASE_DIR, "templates"),
+    static_folder=os.path.join(BASE_DIR, "static")
+)
+
+# 3-1. PWA 지원 라우트 (manifest.json 및 Service Worker)
+@app.route("/sw.js")
+def service_worker():
+    response = app.send_static_file("sw.js")
+    response.headers["Content-Type"] = "application/javascript"
+    response.headers["Service-Worker-Allowed"] = "/"
+    return response
+
+@app.route("/manifest.json")
+def manifest():
+    return app.send_static_file("manifest.json")
 
 # 4. 프롬프트 생성 헬퍼 함수 (Prompt A: 일반 모드, Prompt B: 전문가 모드)
 def build_prompts(name, role, experience, projects, tone, prompt_type):
