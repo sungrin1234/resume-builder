@@ -82,20 +82,29 @@ def build_prompts(name, role, experience, projects, tone, prompt_type):
 """
     return system_instruction, prompt_content
 
-# 5. 메인 화면 라우트 (루트 및 Vercel 라우트 별칭 지원)
-@app.route("/")
-@app.route("/api")
-@app.route("/api/index")
-@app.route("/api/index.py")
+# 5. 메인 화면 라우트
+@app.route("/", methods=["GET"])
+@app.route("/api", methods=["GET"])
+@app.route("/api/index", methods=["GET"])
 def index():
     return render_template("index.html")
+
+# 5-1. Vercel 서버리스 통합 엔트리포인트 (GET: 화면 반환, POST: AI 생성 처리)
+@app.route("/api/index.py", methods=["GET", "POST"])
+def vercel_entrypoint():
+    if request.method == "POST":
+        return generate()
+    return index()
 
 # 6. AI 생성 API 라우트
 @app.route("/generate", methods=["POST"])
 @app.route("/api/generate", methods=["POST"])
 def generate():
-    # 6-1. 요청 데이터 파싱
-    data = request.get_json()
+    # 6-1. 요청 데이터 파싱 (JSON 또는 Form 데이터 안전 파싱)
+    data = request.get_json(silent=True) or {}
+    if not data and request.form:
+        data = request.form.to_dict()
+
     if not data:
         logger.warning("[요청 실패] 클라이언트로부터 전달된 JSON 데이터가 없습니다.")
         return jsonify({"success": False, "message": "요청 데이터가 올바르지 않습니다."}), 400

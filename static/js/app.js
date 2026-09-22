@@ -183,7 +183,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 body: JSON.stringify(payload)
             });
 
-            const data = await response.json();
+            let data;
+            const contentType = response.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                data = await response.json();
+            } else {
+                const text = await response.text();
+                throw new Error(`서버 응답 오류 (${response.status}): ${text.substring(0, 100)}`);
+            }
 
             if (!response.ok || !data.success) {
                 // 백엔드에서 전달한 오류 메시지 표시
