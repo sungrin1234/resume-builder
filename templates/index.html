@@ -9,6 +9,642 @@
     <meta name="theme-color" content="#0f172a">
     <link rel="apple-touch-icon" href="{{ url_for('static', filename='icons/icon-192.png') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+/* ==========================================================================
+   AI Resume & Portfolio Builder - 스타일시트 (style.css)
+   🌿 BOTANICAL NATURE CLEAN (자연적이고 맑고 단정한 보태니컬 그린 에디션)
+   테마: 눈이 편안한 포레스트 그린, 세이지 민트, 청량하고 정갈한 내추럴 디자인
+   ========================================================================== */
+
+/* 1. 디자인 토큰 및 자연의 색상 변수 */
+:root {
+    /* 내추럴 그린 팔레트 */
+    --green-deep: #14532d;          /* 짙은 소나무빛 딥 그린 (헤더 및 주요 텍스트) */
+    --green-primary: #16a34a;       /* 싱그러운 포레스트 에메랄드 그린 */
+    --green-hover: #15803d;         /* 마우스 호버 시 짙은 나뭇잎 그린 */
+    --green-soft: #dcfce7;          /* 은은한 세이지 민트 연두빛 (배지 및 하이라이트) */
+    --green-border: #bbf7d0;        /* 맑은 새싹 연두 테두리 */
+    --green-glow: 0 8px 24px rgba(22, 163, 74, 0.22);
+
+    /* 편안한 내추럴 배경 및 카드 톤 */
+    --bg-nature: #f4f7f4;           /* 눈이 편안한 미색 보태니컬 오프화이트 */
+    --card-bg: #ffffff;             /* 깨끗하고 단정한 화이트 */
+    --card-border: #e2e8e2;         /* 차분한 오가닉 그레이-그린 경계선 */
+    --card-shadow: 0 10px 30px -5px rgba(20, 83, 45, 0.06), 0 4px 12px rgba(0, 0, 0, 0.02);
+
+    /* 텍스트 컬러 (시인성이 뛰어난 오가닉 차콜 & 딥 그린) */
+    --text-main: #1f2923;           /* 부드러운 오가닉 블랙/차콜 */
+    --text-muted: #526357;          /* 차분한 세이지 그레이 설명글 */
+    --text-light: #718276;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-nature);
+    /* 맑은 숲속 아침 공기와 자연의 앰비언트 그라데이션 */
+    background-image: 
+        radial-gradient(circle at 12% 15%, rgba(187, 247, 208, 0.45) 0%, transparent 45%),
+        radial-gradient(circle at 88% 20%, rgba(220, 252, 231, 0.65) 0%, transparent 45%),
+        radial-gradient(circle at 50% 85%, rgba(209, 250, 229, 0.4) 0%, transparent 55%);
+    background-attachment: fixed;
+    color: var(--text-main);
+    line-height: 1.65;
+    padding: 40px 20px 80px 20px;
+    min-height: 100vh;
+}
+
+/* 2. 전체 레이아웃 컨테이너 */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* 3. 헤더: 맑고 정갈한 내추럴 보태니컬 헤더 */
+.header {
+    text-align: center;
+    margin-bottom: 42px;
+}
+
+.logo-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    background: var(--green-soft);
+    color: var(--green-deep);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 20px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    border: 1px solid var(--green-border);
+    box-shadow: 0 2px 8px rgba(22, 163, 74, 0.1);
+    margin-bottom: 14px;
+    transition: all 0.25s ease;
+}
+
+.logo-badge::before {
+    content: '🌿';
+    font-size: 13px;
+}
+
+.logo-badge:hover {
+    transform: translateY(-2px);
+    background: #cbfad9;
+    box-shadow: 0 4px 14px rgba(22, 163, 74, 0.18);
+}
+
+.header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--green-deep);
+    letter-spacing: -0.6px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+/* 4. 메인 2분할 그리드 */
+.main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    align-items: start;
+}
+
+@media (max-width: 900px) {
+    .main-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* 5. 공통 카드: 깨끗하고 단정한 화이트 & 부드러운 유기적 라운딩 */
+.card {
+    background-color: var(--card-bg);
+    border: 1.5px solid var(--card-border);
+    border-radius: 18px;
+    padding: 30px;
+    box-shadow: var(--card-shadow);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: 0 16px 36px -8px rgba(20, 83, 45, 0.1);
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 22px;
+    padding-bottom: 12px;
+    border-bottom: 1.5px solid #eef2ee;
+    color: var(--green-deep);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.card-title::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--green-primary);
+    box-shadow: 0 0 0 3px var(--green-soft);
+}
+
+/* 6. 폼 컨트롤: 깔끔하고 단정한 입력창 */
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 7px;
+    color: #1e2e23;
+}
+
+.required {
+    color: #16a34a;
+    font-weight: 700;
+}
+
+input[type="text"],
+textarea,
+select {
+    width: 100%;
+    padding: 11px 15px;
+    border: 1.5px solid #d4ded6;
+    border-radius: 10px;
+    font-size: 14px;
+    font-family: inherit;
+    color: var(--text-main);
+    background-color: #fafbfa;
+    transition: all 0.2s ease;
+}
+
+input[type="text"]::placeholder,
+textarea::placeholder {
+    color: #93a397;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    background-color: #ffffff;
+    border-color: var(--green-primary);
+    box-shadow: 0 0 0 3.5px rgba(22, 163, 74, 0.15);
+}
+
+textarea {
+    resize: vertical;
+}
+
+.field-error {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #dc2626;
+    margin-top: 5px;
+    min-height: 16px;
+}
+
+/* 7. 프롬프트 모드 라디오 카드 */
+.radio-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.radio-card {
+    position: relative;
+    border: 1.5px solid #d4ded6;
+    border-radius: 12px;
+    padding: 14px;
+    cursor: pointer;
+    background-color: #fafbfa;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.radio-card:hover {
+    background-color: #f2f7f3;
+    border-color: #a7c9af;
+}
+
+.radio-card input[type="radio"] {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    accent-color: var(--green-primary);
+    width: 16px;
+    height: 16px;
+}
+
+.radio-badge {
+    display: inline-block;
+    align-self: flex-start;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 6px;
+    background-color: var(--green-soft);
+    color: var(--green-deep);
+    border: 1px solid var(--green-border);
+    margin-bottom: 5px;
+}
+
+.radio-badge.expert {
+    background-color: #ecfdf5;
+    color: #047857;
+    border-color: #a7f3d0;
+}
+
+.radio-label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--green-deep);
+}
+
+.radio-desc {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 4px;
+    line-height: 1.35;
+}
+
+/* 선택된 라디오 카드: 부드러운 그린 테두리와 틴트 */
+.radio-card:has(input[type="radio"]:checked) {
+    background-color: #f0fdf4;
+    border-color: var(--green-primary);
+    box-shadow: 0 2px 10px rgba(22, 163, 74, 0.12);
+}
+
+/* 8. 버튼 스타일: 신선한 포레스트 에메랄드 */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 20px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    text-decoration: none;
+    gap: 8px;
+    transition: all 0.2s ease;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+.btn-primary {
+    width: 100%;
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
+    color: #ffffff;
+    padding: 15px;
+    font-size: 16px;
+    margin-top: 10px;
+    box-shadow: var(--green-glow);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #15803d 0%, #14532d 100%);
+    box-shadow: 0 10px 28px rgba(20, 83, 45, 0.3);
+    transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+    background: #cbd5cf;
+    color: #7d8e82;
+    box-shadow: none;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-secondary {
+    background-color: #f0fdf4;
+    color: var(--green-deep);
+    border: 1.5px solid var(--green-border);
+    font-size: 13px;
+    padding: 8px 14px;
+    font-weight: 600;
+}
+
+.btn-secondary:hover {
+    background-color: #dcfce7;
+    border-color: var(--green-primary);
+    transform: translateY(-1px);
+}
+
+/* 9. 우측 결과 카드 헤더 & 액션 버튼 */
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1.5px solid #eef2ee;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.result-header .card-title {
+    margin-bottom: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+/* 10. 알림 메시지 상자 */
+.alert {
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    line-height: 1.4;
+}
+
+.alert-success {
+    background-color: #f0fdf4;
+    color: #14532d;
+    border: 1.5px solid #bbf7d0;
+}
+
+.alert-error {
+    background-color: #fef2f2;
+    color: #991b1b;
+    border: 1.5px solid #fecaca;
+}
+
+/* 11. 빈 상태 */
+.empty-state {
+    text-align: center;
+    padding: 70px 20px;
+    color: var(--text-muted);
+}
+
+.empty-icon {
+    font-size: 48px;
+    margin-bottom: 14px;
+}
+
+.empty-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text-muted);
+}
+
+/* 12. 로딩 상태 */
+.loading-state {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.big-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid #dcfce7;
+    border-top: 4px solid var(--green-primary);
+    border-radius: 50%;
+    margin: 0 auto 18px auto;
+    animation: spin 0.85s linear infinite;
+}
+
+.loading-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 6px;
+}
+
+.loading-subtitle {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* 13. 버튼 내부 스피너 */
+.spinner {
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-top: 2px solid #ffffff;
+    border-radius: 50%;
+    display: inline-block;
+    animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* 14. 결과 출력 컨테이너 */
+.result-container {
+    background-color: #fafcfa;
+    border: 1.5px solid #e0e8e2;
+    border-radius: 12px;
+    padding: 24px;
+    max-height: 600px;
+    overflow-y: auto;
+    transition: all 0.25s ease;
+}
+
+/* 편안한 내추럴 스크롤바 */
+.result-container::-webkit-scrollbar {
+    width: 6px;
+}
+.result-container::-webkit-scrollbar-track {
+    background: #f0f4f1;
+    border-radius: 3px;
+}
+.result-container::-webkit-scrollbar-thumb {
+    background: #86efac;
+    border-radius: 3px;
+}
+.result-container::-webkit-scrollbar-thumb:hover {
+    background: #4ade80;
+}
+
+/* 15. 마크다운 렌더링 스타일 (보태니컬 내추럴 서식) */
+.markdown-body h1,
+.markdown-body h2 {
+    font-size: 20px;
+    font-weight: 800;
+    margin-top: 26px;
+    margin-bottom: 12px;
+    color: var(--green-deep);
+    border-bottom: 2px solid #bbf7d0;
+    padding-bottom: 6px;
+}
+
+.markdown-body h1:first-child,
+.markdown-body h2:first-child {
+    margin-top: 0;
+}
+
+.markdown-body h3 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    color: #15803d;
+}
+
+.markdown-body p {
+    margin-bottom: 12px;
+    line-height: 1.75;
+    color: #2e3d33;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+    margin-left: 22px;
+    margin-bottom: 16px;
+}
+
+.markdown-body li {
+    margin-bottom: 6px;
+    line-height: 1.65;
+    color: #2e3d33;
+}
+
+.markdown-body li::marker {
+    color: var(--green-primary);
+}
+
+.markdown-body strong {
+    font-weight: 700;
+    color: var(--green-deep);
+    background-color: #dcfce7;
+    padding: 1px 5px;
+    border-radius: 4px;
+}
+
+.markdown-body hr {
+    border: none;
+    border-top: 1px solid #d4ded6;
+    margin: 20px 0;
+}
+
+/* 16. 실시간 테마 변경 퀵 바 */
+.theme-quick-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    background: #f0fdf4;
+    padding: 8px 12px;
+    border-radius: 10px;
+    border: 1px solid #bbf7d0;
+}
+
+.quick-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-right: 4px;
+}
+
+.theme-pill {
+    background: #ffffff;
+    border: 1px solid #bbf7d0;
+    color: #2e4a36;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.theme-pill:hover {
+    background: #dcfce7;
+    color: var(--green-deep);
+    transform: translateY(-1px);
+}
+
+.theme-pill.active {
+    background: var(--green-primary);
+    color: #ffffff;
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(22, 163, 74, 0.3);
+}
+
+/* 17. 뷰어 개별 테마 변형 스타일 */
+/* [테마 1] 🌸 파스텔톤 */
+.result-container.theme-pastel {
+    background: #fff9f6;
+    border-color: #fecdd3;
+}
+.result-container.theme-pastel .markdown-body h1,
+.result-container.theme-pastel .markdown-body h2 {
+    color: #e11d48;
+    border-bottom-color: #fecdd3;
+}
+.result-container.theme-pastel .markdown-body strong {
+    color: #9f1239;
+    background: #ffe4e6;
+}
+
+/* [테마 2] 💼 진한톤 */
+.result-container.theme-deep {
+    background: #0f172a;
+    border-color: #1e293b;
+}
+.result-container.theme-deep .markdown-body h1,
+.result-container.theme-deep .markdown-body h2 {
+    color: #38bdf8;
+    border-bottom-color: #334155;
+}
+.result-container.theme-deep .markdown-body p,
+.result-container.theme-deep .markdown-body li {
+    color: #e2e8f0;
+}
+.result-container.theme-deep .markdown-body strong {
+    color: #ffffff;
+    background: rgba(56, 189, 248, 0.2);
+}
+
+/* [테마 3] 📄 미니멀톤 */
+.result-container.theme-minimal {
+    background: #ffffff;
+    border-color: #e2e8f0;
+}
+.result-container.theme-minimal .markdown-body h1,
+.result-container.theme-minimal .markdown-body h2 {
+    color: #0f172a;
+    border-bottom-color: #0f172a;
+}
+.result-container.theme-minimal .markdown-body strong {
+    color: #0f172a;
+    background: #f1f5f9;
+}
+    </style>
     <!-- Pretendard Web Font -->
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 </head>
@@ -161,6 +797,287 @@
     <!-- 마크다운 렌더링 라이브러리 (marked.js) -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <!-- JavaScript 로드 -->
-    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script>
+/**
+ * AI Resume & Portfolio Builder - 브라우저 프론트엔드 스크립트 (app.js)
+ * 기능: 폼 검증, /generate API 통신, 로딩 상태 관리, 결과 출력, 클립보드 복사, 마크다운 다운로드
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. 주요 DOM 엘리먼트 가져오기
+    const form = document.getElementById('builderForm');
+    const nameInput = document.getElementById('name');
+    const roleInput = document.getElementById('role');
+    const experienceInput = document.getElementById('experience');
+    const projectsInput = document.getElementById('projects');
+    const toneSelect = document.getElementById('tone');
+    const themeSelect = document.getElementById('theme');
+    
+    // 에러 표시 span 엘리먼트들
+    const nameError = document.getElementById('nameError');
+    const roleError = document.getElementById('roleError');
+    const experienceError = document.getElementById('experienceError');
+    const projectsError = document.getElementById('projectsError');
+
+    // 버튼 및 상태 표시 엘리먼트들
+    const generateBtn = document.getElementById('generateBtn');
+    const btnText = generateBtn.querySelector('.btn-text');
+    const btnSpinner = generateBtn.querySelector('.spinner');
+
+    const emptyState = document.getElementById('emptyState');
+    const loadingState = document.getElementById('loadingState');
+    const resultContainer = document.getElementById('resultContainer');
+    const resultOutput = document.getElementById('resultOutput');
+    const actionButtons = document.getElementById('actionButtons');
+    const themeQuickBar = document.getElementById('themeQuickBar');
+    const themePills = document.querySelectorAll('.theme-pill');
+    const alertBox = document.getElementById('alertBox');
+
+    const copyBtn = document.getElementById('copyBtn');
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    // 현재 생성된 최신 마크다운 텍스트 저장용 변수
+    let currentGeneratedMarkdown = '';
+
+    // 테마 적용 함수
+    function applyResultTheme(themeName) {
+        // 기존 테마 클래스 제거
+        resultContainer.classList.remove('theme-nature', 'theme-cyber', 'theme-pastel', 'theme-deep', 'theme-minimal');
+        resultContainer.classList.add(`theme-${themeName}`);
+
+        // 셀렉트 박스 동기화
+        if (themeSelect) themeSelect.value = themeName;
+
+        // 퀵 스위치 버튼 active 상태 갱신
+        themePills.forEach(pill => {
+            if (pill.dataset.theme === themeName) {
+                pill.classList.add('active');
+            } else {
+                pill.classList.remove('active');
+            }
+        });
+    }
+
+    // 테마 셀렉트 박스 변경 시 실시간 반영
+    if (themeSelect) {
+        themeSelect.addEventListener('change', (e) => {
+            applyResultTheme(e.target.value);
+        });
+    }
+
+    // 테마 퀵 버튼 클릭 시 실시간 반영
+    themePills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            applyResultTheme(pill.dataset.theme);
+        });
+    });
+
+    // 2. 알림 메시지 표시 함수
+    function showAlert(message, type = 'error') {
+        alertBox.textContent = message;
+        alertBox.className = `alert alert-${type}`;
+        alertBox.style.display = 'block';
+
+        // 6초 후 알림 자동 숨김
+        setTimeout(() => {
+            alertBox.style.display = 'none';
+        }, 6000);
+    }
+
+    function hideAlert() {
+        alertBox.style.display = 'none';
+    }
+
+    // 3. 필드 에러 메시지 초기화 함수
+    function clearFieldErrors() {
+        nameError.textContent = '';
+        roleError.textContent = '';
+        experienceError.textContent = '';
+        projectsError.textContent = '';
+    }
+
+    // 4. 프론트엔드 입력값 유효성 검사 (Validation)
+    function validateForm() {
+        clearFieldErrors();
+        let isValid = true;
+
+        if (!nameInput.value.trim()) {
+            nameError.textContent = '이름을 입력해 주세요.';
+            isValid = false;
+        }
+
+        if (!roleInput.value.trim()) {
+            roleError.textContent = '희망하는 지원 직무를 입력해 주세요.';
+            isValid = false;
+        }
+
+        if (!experienceInput.value.trim()) {
+            experienceError.textContent = '경력 또는 학습 이력을 입력해 주세요.';
+            isValid = false;
+        }
+
+        if (!projectsInput.value.trim()) {
+            projectsError.textContent = '프로젝트 경험 내용을 입력해 주세요.';
+            isValid = false;
+        }
+
+        return isValid;
+    }
+
+    // 5. 로딩 UI 전환 함수
+    function setLoading(isLoading) {
+        if (isLoading) {
+            generateBtn.disabled = true;
+            btnText.textContent = 'AI 이력서 생성 중...';
+            btnSpinner.style.display = 'inline-block';
+
+            emptyState.style.display = 'none';
+            resultContainer.style.display = 'none';
+            actionButtons.style.display = 'none';
+            if (themeQuickBar) themeQuickBar.style.display = 'none';
+            loadingState.style.display = 'block';
+            hideAlert();
+        } else {
+            generateBtn.disabled = false;
+            btnText.textContent = 'AI로 이력서 & 포트폴리오 생성하기';
+            btnSpinner.style.display = 'none';
+            loadingState.style.display = 'none';
+        }
+    }
+
+    // 6. 폼 제출 이벤트 리스너
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // 1단계: 유효성 검사
+        if (!validateForm()) {
+            showAlert('필수 입력 항목을 모두 확인해 주세요.', 'error');
+            return;
+        }
+
+        // 선택된 프롬프트 라디오 버튼 값 가져오기
+        const selectedPromptType = document.querySelector('input[name="prompt_type"]:checked').value;
+        const selectedTheme = themeSelect ? themeSelect.value : 'nature';
+
+        // 전송할 페이로드 데이터 구성
+        const payload = {
+            name: nameInput.value.trim(),
+            role: roleInput.value.trim(),
+            experience: experienceInput.value.trim(),
+            projects: projectsInput.value.trim(),
+            tone: toneSelect.value,
+            theme: selectedTheme,
+            prompt_type: selectedPromptType
+        };
+
+        // 로딩 시작
+        setLoading(true);
+
+        try {
+            // 백엔드 /generate 라우트로 POST 요청
+            const response = await fetch('/generate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await response.json();
+
+            if (!response.ok || !data.success) {
+                // 백엔드에서 전달한 오류 메시지 표시
+                const errorMsg = data.message || '이력서 생성 중 문제가 발생했습니다.';
+                throw new Error(errorMsg);
+            }
+
+            // 성공 시 마크다운 파싱 및 결과 화면 표시
+            currentGeneratedMarkdown = data.result;
+            
+            if (typeof marked !== 'undefined') {
+                resultOutput.innerHTML = marked.parse(currentGeneratedMarkdown);
+            } else {
+                resultOutput.textContent = currentGeneratedMarkdown;
+            }
+
+            // 선택된 테마 스타일 즉시 적용
+            applyResultTheme(selectedTheme);
+
+            loadingState.style.display = 'none';
+            resultContainer.style.display = 'block';
+            actionButtons.style.display = 'flex';
+            if (themeQuickBar) themeQuickBar.style.display = 'flex';
+
+            showAlert('🎉 이력서와 포트폴리오가 성공적으로 생성되었습니다!', 'success');
+
+        } catch (error) {
+            console.error('API 통신 오류:', error);
+            showAlert(error.message, 'error');
+            // 에러 시 다시 빈 화면 상태 보여주기
+            if (!currentGeneratedMarkdown) {
+                emptyState.style.display = 'block';
+            }
+        } finally {
+            // 로딩 종료
+            setLoading(false);
+        }
+    });
+
+    // 7. 결과 내용 클립보드 복사 기능
+    copyBtn.addEventListener('click', async () => {
+        if (!currentGeneratedMarkdown) return;
+
+        try {
+            await navigator.clipboard.writeText(currentGeneratedMarkdown);
+            const originalText = copyBtn.innerHTML;
+            copyBtn.innerHTML = '✅ 복사 완료!';
+            copyBtn.style.backgroundColor = '#dcfce7';
+            copyBtn.style.borderColor = '#86efac';
+
+            setTimeout(() => {
+                copyBtn.innerHTML = originalText;
+                copyBtn.style.backgroundColor = '';
+                copyBtn.style.borderColor = '';
+            }, 2000);
+        } catch (err) {
+            console.error('복사 실패:', err);
+            showAlert('클립보드 복사에 실패했습니다. 수동으로 복사해 주세요.', 'error');
+        }
+    });
+
+    // 8. Markdown(.md) 파일 다운로드 기능
+    downloadBtn.addEventListener('click', () => {
+        if (!currentGeneratedMarkdown) return;
+
+        const userName = nameInput.value.trim() || 'Resume';
+        const fileName = `${userName}_이력서_포트폴리오.md`;
+
+        // UTF-8 BOM 추가하여 한글 깨짐 방지
+        const blob = new Blob(['\uFEFF' + currentGeneratedMarkdown], {
+            type: 'text/markdown;charset=utf-8;'
+        });
+
+        const downloadUrl = URL.createObjectURL(blob);
+        const tempLink = document.createElement('a');
+        tempLink.href = downloadUrl;
+        tempLink.download = fileName;
+        document.body.appendChild(tempLink);
+        tempLink.click();
+        document.body.removeChild(tempLink);
+        URL.revokeObjectURL(downloadUrl);
+
+        showAlert(`💾 "${fileName}" 파일이 다운로드되었습니다!`, 'success');
+    });
+});
+
+// 10. PWA Service Worker 등록
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('[PWA] Service Worker 등록 완료:', reg.scope))
+            .catch(err => console.warn('[PWA] Service Worker 등록 실패:', err));
+    });
+}
+</script>
 </body>
 </html>
